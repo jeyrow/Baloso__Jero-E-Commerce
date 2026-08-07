@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TAU Store Side Menu</title>
+  <link rel="stylesheet" href="side-menu.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark">TAU</div>
+        <div class="brand-details">
+          <h1>TAU Smart Store</h1>
+          <p>Smart agriculture shop management</p>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+      </div>
+
+      <div class="sidebar-intro">
+        <p>Organize your dashboard with grouped navigation, quick actions, and a clean active menu indicator.</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="menu-group">
+          <div class="group-title">Main Navigation</div>
+          <a href="#home" class="menu-link active" onclick="setActive(event)">
+            <span class="menu-icon">🏠</span>
+            <span class="menu-text">Home</span>
+          </a>
+          <a href="#products" class="menu-link" onclick="setActive(event)">
+            <span class="menu-icon">📦</span>
+            <span class="menu-text">Products</span>
+          </a>
+          <a href="#categories" class="menu-link" onclick="setActive(event)">
+            <span class="menu-icon">🗂️</span>
+            <span class="menu-text">Categories</span>
+          </a>
+        </div>
+
+        <div class="menu-group">
+          <div class="group-title">Shopping</div>
+          <a href="#cart" class="menu-link" onclick="setActive(event)">
+            <span class="menu-icon">🛒</span>
+            <span class="menu-text">Cart</span>
+          </a>
+          <a href="#orders" class="menu-link" onclick="setActive(event)">
+            <span class="menu-icon">🧾</span>
+            <span class="menu-text">My Orders</span>
+          </a>
+          <a href="#wishlist" class="menu-link" onclick="setActive(event)">
+            <span class="menu-icon">💖</span>
+            <span class="menu-text">Wishlist</span>
+          </a>
+        </div>
+
+        <div class="menu-group">
+          <div class="group-title">Account</div>
+          <a href="#profile" class="menu-link" onclick="setActive(event)">
+            <span class="menu-icon">👤</span>
+            <span class="menu-text">Profile</span>
+          </a>
+          <a href="#settings" class="menu-link" onclick="setActive(event)">
+            <span class="menu-icon">⚙️</span>
+            <span class="menu-text">Settings</span>
+          </a>
+        </div>
+
+        <div class="menu-group">
+          <div class="group-title">System</div>
+          <a href="#logout" class="menu-link logout-link" onclick="logout(event)">
+            <span class="menu-icon">🔌</span>
+            <span class="menu-text">Logout</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="footer-label">Contact</div>
+        <p>+6345 934 0716<br />presoffice@tau.edu.ph</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="main-header">
+        <div>
+          <span class="badge">Dashboard</span>
+          <h2>Welcome to TAU Smart Store</h2>
+        </div>
+        <div class="header-meta">
+          <span>Ranked 308 in 2025</span>
+          <span>Smart University Store</span>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <h3>125</h3>
+          <p>Available Products</p>
+        </article>
+        <article class="stat-card">
+          <h3>42</h3>
+          <p>Pending Orders</p>
+        </article>
+        <article class="stat-card">
+          <h3>18</h3>
+          <p>Saved Wishlist Items</p>
+        </article>
+        <article class="stat-card">
+          <h3>8</h3>
+          <p>System Tasks</p>
+        </article>
+      </section>
+
+      <section class="page-panel">
+        <h3>Menu Features</h3>
+        <p>This side menu is built with proper grouping, an active menu indicator, hover states, and an expandable toolbar. Keep this page separate from the login page so it can run independently.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="side-menu.js"></script>
+</body>
+</html>
