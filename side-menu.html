@@ -3,119 +3,321 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TAU Store Side Menu</title>
+  <title>TAU Smart Store</title>
   <link rel="stylesheet" href="side-menu.css" />
 </head>
 <body>
-  <div class="page-wrapper">
+  <div class="app-shell">
     <aside id="sidebar" class="sidebar">
-      <div class="sidebar-brand">
-        <div class="brand-mark">TAU</div>
-        <div class="brand-details">
-          <h1>TAU Smart Store</h1>
-          <p>Smart agriculture shop management</p>
+      <div class="brand-area">
+        <div class="brand-logo">TAU</div>
+        <div class="brand-text">
+          <h1>TAU Store</h1>
         </div>
-        <button class="menu-toggle" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+        <button id="menuToggle" class="menu-toggle" type="button" aria-label="Toggle menu">☰</button>
       </div>
 
-      <div class="sidebar-intro">
-        <p>Organize your dashboard with grouped navigation, quick actions, and a clean active menu indicator.</p>
-      </div>
-
-      <nav class="sidebar-nav">
+      <nav class="side-nav" aria-label="Main navigation">
         <div class="menu-group">
           <div class="group-title">Main Navigation</div>
-          <a href="#home" class="menu-link active" onclick="setActive(event)">
-            <span class="menu-icon">🏠</span>
-            <span class="menu-text">Home</span>
-          </a>
-          <a href="#products" class="menu-link" onclick="setActive(event)">
-            <span class="menu-icon">📦</span>
-            <span class="menu-text">Products</span>
-          </a>
-          <a href="#categories" class="menu-link" onclick="setActive(event)">
-            <span class="menu-icon">🗂️</span>
-            <span class="menu-text">Categories</span>
-          </a>
+          <button class="menu-item active" type="button" data-target="home">
+            <span class="icon">🏠</span>
+            <span class="label">Home</span>
+          </button>
+          <button class="menu-item" type="button" data-target="products">
+            <span class="icon">📦</span>
+            <span class="label">Products</span>
+          </button>
+          <button class="menu-item" type="button" data-target="categories">
+            <span class="icon">🗂️</span>
+            <span class="label">Categories</span>
+          </button>
         </div>
 
         <div class="menu-group">
           <div class="group-title">Shopping</div>
-          <a href="#cart" class="menu-link" onclick="setActive(event)">
-            <span class="menu-icon">🛒</span>
-            <span class="menu-text">Cart</span>
-          </a>
-          <a href="#orders" class="menu-link" onclick="setActive(event)">
-            <span class="menu-icon">🧾</span>
-            <span class="menu-text">My Orders</span>
-          </a>
-          <a href="#wishlist" class="menu-link" onclick="setActive(event)">
-            <span class="menu-icon">💖</span>
-            <span class="menu-text">Wishlist</span>
-          </a>
+          <button class="menu-item" type="button" data-target="cart">
+            <span class="icon">🛒</span>
+            <span class="label">Cart</span>
+          </button>
+          <button class="menu-item" type="button" data-target="orders">
+            <span class="icon">🧾</span>
+            <span class="label">My Orders</span>
+          </button>
+          <button class="menu-item" type="button" data-target="wishlist">
+            <span class="icon">💖</span>
+            <span class="label">Wishlist</span>
+          </button>
         </div>
 
         <div class="menu-group">
           <div class="group-title">Account</div>
-          <a href="#profile" class="menu-link" onclick="setActive(event)">
-            <span class="menu-icon">👤</span>
-            <span class="menu-text">Profile</span>
-          </a>
-          <a href="#settings" class="menu-link" onclick="setActive(event)">
-            <span class="menu-icon">⚙️</span>
-            <span class="menu-text">Settings</span>
-          </a>
+          <button class="menu-item" type="button" data-target="profile">
+            <span class="icon">👤</span>
+            <span class="label">Profile</span>
+          </button>
+          <button class="menu-item" type="button" data-target="settings">
+            <span class="icon">⚙️</span>
+            <span class="label">Settings</span>
+          </button>
         </div>
 
         <div class="menu-group">
           <div class="group-title">System</div>
-          <a href="#logout" class="menu-link logout-link" onclick="logout(event)">
-            <span class="menu-icon">🔌</span>
-            <span class="menu-text">Logout</span>
-          </a>
+          <button class="menu-item logout-item" type="button" data-target="logout">
+            <span class="icon">🔒</span>
+            <span class="label">Logout</span>
+          </button>
         </div>
       </nav>
 
       <div class="sidebar-footer">
-        <div class="footer-label">Contact</div>
-        <p>+6345 934 0716<br />presoffice@tau.edu.ph</p>
+        <p class="footer-heading">TAU Campus</p>
+        <p>Republic of the Philippines</p>
+        <p>TARLAC AGRICULTURAL UNIVERSITY</p>
+        <p>Camiling, Tarlac</p>
       </div>
     </aside>
 
-    <main class="main-content">
-      <header class="main-header">
+    <main class="main-panel">
+      <header class="topbar">
         <div>
-          <span class="badge">Dashboard</span>
-          <h2>Welcome to TAU Smart Store</h2>
+          <span class="status-pill">E-Commerce Dashboard</span>
+          <h2>TAU Smart Store</h2>
         </div>
-        <div class="header-meta">
-          <span>Ranked 308 in 2025</span>
-          <span>Smart University Store</span>
+        <div class="cart-chip">
+          <span>🛒</span>
+          <span id="cartCount">0</span>
         </div>
       </header>
 
-      <section class="stats-grid">
-        <article class="stat-card">
-          <h3>125</h3>
-          <p>Available Products</p>
-        </article>
-        <article class="stat-card">
-          <h3>42</h3>
-          <p>Pending Orders</p>
-        </article>
-        <article class="stat-card">
-          <h3>18</h3>
-          <p>Saved Wishlist Items</p>
-        </article>
-        <article class="stat-card">
-          <h3>8</h3>
-          <p>System Tasks</p>
-        </article>
+      <section id="home" class="content-section active">
+        <div class="section-header">
+          <h3>Home</h3>
+        </div>
+
+        <div class="promo-banner">
+          <div>
+            <span class="promo-tag">Hot Deals</span>
+            <h4>Fresh harvest deals for every farmer and student</h4>
+          </div>
+          <button class="promo-button" type="button">Shop Now</button>
+        </div>
+
+        <div class="welcome-card">
+          <h4>Welcome to TAU Smart Store</h4>
+          <p>Your trusted agricultural marketplace for modern students, faculty, and local entrepreneurs.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h4>Featured Products</h4>
+            <p>Fresh farm produce, tools, learning kits, and smart agricultural equipment.</p>
+          </article>
+          <article class="feature-card">
+            <h4>New Arrivals</h4>
+            <p>Discover the latest organic selections and classroom-ready agriculture essentials.</p>
+          </article>
+          <article class="feature-card">
+            <h4>Special Promotions</h4>
+            <p>Enjoy campus discounts on bundles for the month of harvest and study preparation.</p>
+          </article>
+        </div>
       </section>
 
-      <section class="page-panel">
-        <h3>Menu Features</h3>
-        <p>This side menu is built with proper grouping, an active menu indicator, hover states, and an expandable toolbar. Keep this page separate from the login page so it can run independently.</p>
+      <section id="products" class="content-section">
+        <div class="section-header">
+          <h3>Products</h3>
+        </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=900&q=80" alt="Plant nutrient kit" />
+            </div>
+            <h4>Organic Rice Seeds</h4>
+            <p>High-quality rice seeds for local farms and research use.</p>
+            <div class="product-meta">
+              <span class="price">₱350</span>
+              <button class="add-cart" type="button">Add to Cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Tomato seeds product" />
+            </div>
+            <h4>Hybrid Corn Pack</h4>
+            <p>Best-value seed pack for crop growth and yield improvement.</p>
+            <div class="product-meta">
+              <span class="price">₱420</span>
+              <button class="add-cart" type="button">Add to Cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80" alt="Irrigation system" />
+            </div>
+            <h4>Farm Tool Kit</h4>
+            <p>Essential gardening and soil preparation tools in one bundle.</p>
+            <div class="product-meta">
+              <span class="price">₱980</span>
+              <button class="add-cart" type="button">Add to Cart</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="categories" class="content-section">
+        <div class="section-header">
+          <h3>Categories</h3>
+        </div>
+        <div class="category-grid">
+          <article class="category-card">
+            <img class="category-thumb" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Farm supplies" />
+            <h4>Farm Supplies</h4>
+            <p>Tools, irrigation equipment, and agricultural essentials for everyday productivity.</p>
+          </article>
+          <article class="category-card">
+            <img class="category-thumb" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80" alt="Seeds and planting" />
+            <h4>Seeds & Planting</h4>
+            <p>High-quality seeds and planting materials for sustainable agriculture and research.</p>
+          </article>
+          <article class="category-card">
+            <img class="category-thumb" src="https://images.unsplash.com/photo-1464226184884-fa52acbb5b9d?auto=format&fit=crop&w=900&q=80" alt="Organic goods" />
+            <h4>Organic Goods</h4>
+            <p>Fresh produce and natural farm items ideal for health-conscious consumers and campus use.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cart" class="content-section">
+        <div class="section-header">
+          <h3>Cart</h3>
+        </div>
+        <div class="cart-table">
+          <div class="cart-item cart-header">
+            <span>Item</span>
+            <span>Qty</span>
+            <span>Price</span>
+          </div>
+          <div class="cart-item">
+            <span>Organic Rice Seeds</span>
+            <span>2</span>
+            <span>₱700</span>
+          </div>
+          <div class="cart-item">
+            <span>Farm Tool Kit</span>
+            <span>1</span>
+            <span>₱980</span>
+          </div>
+          <div class="cart-item total-row">
+            <span>Total</span>
+            <span>3</span>
+            <span>₱1,680</span>
+          </div>
+        </div>
+        <button class="primary-btn" type="button">Checkout</button>
+      </section>
+
+      <section id="orders" class="content-section">
+        <div class="section-header">
+          <h3>My Orders</h3>
+        </div>
+        <div class="order-list">
+          <article class="order-card">
+            <div class="order-top">
+              <span>#TAU-1024</span>
+              <span class="status shipped">Shipped</span>
+            </div>
+            <p>Total: ₱1,250</p>
+          </article>
+
+          <article class="order-card">
+            <div class="order-top">
+              <span>#TAU-1045</span>
+              <span class="status processing">Processing</span>
+            </div>
+            <p>Total: ₱890</p>
+          </article>
+
+          <article class="order-card">
+            <div class="order-top">
+              <span>#TAU-1098</span>
+              <span class="status delivered">Delivered</span>
+            </div>
+            <p>Total: ₱1,680</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="wishlist" class="content-section">
+        <div class="section-header">
+          <h3>Wishlist</h3>
+        </div>
+        <div class="wishlist-grid">
+          <article class="wishlist-card">
+            <h4>Organic Tomato Seeds</h4>
+            <p>Perfect for household gardens and small scale farming.</p>
+            <button class="move-cart" type="button">Move to Cart</button>
+          </article>
+          <article class="wishlist-card">
+            <h4>Drip Irrigation Set</h4>
+            <p>Water-efficient system designed for crop health and easy maintenance.</p>
+            <button class="move-cart" type="button">Move to Cart</button>
+          </article>
+          <article class="wishlist-card">
+            <h4>Soil Testing Kit</h4>
+            <p>Monitor nutrient levels and help improve farm productivity.</p>
+            <button class="move-cart" type="button">Move to Cart</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="profile" class="content-section">
+        <div class="section-header">
+          <h3>Profile</h3>
+        </div>
+        <div class="profile-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80" alt="Profile photo" />
+          <div class="profile-info">
+            <p><strong>Name:</strong> Anna Nicole</p>
+            <p><strong>Email:</strong> anna.nicole@tau.edu.ph</p>
+            <p><strong>Course:</strong> Agricultural Business Management</p>
+            <p><strong>Year Level:</strong> 3rd Year</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="content-section">
+        <div class="section-header">
+          <h3>Settings</h3>
+        </div>
+        <div class="settings-list">
+          <div class="setting-box">
+            <h4>Account Settings</h4>
+            <p>Update your personal details, password, and preferred contact information.</p>
+          </div>
+          <div class="setting-box">
+            <h4>Privacy Settings</h4>
+            <p>Adjust visibility and manage who can view your profile and order details.</p>
+          </div>
+          <div class="setting-box">
+            <h4>Notification Settings</h4>
+            <p>Choose alerts for promotions, order updates, and important announcements.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="logout" class="content-section">
+        <div class="section-header">
+          <h3>Logout</h3>
+        </div>
+        <div class="logout-panel">
+          <h4>You are about to sign out</h4>
+          <p>This page represents the logout section of the application. You can safely exit the store after confirming.</p>
+          <button id="logoutBtn" class="danger-btn" type="button">Logout</button>
+        </div>
       </section>
     </main>
   </div>
