@@ -67,11 +67,7 @@ function seedProducts() {
   appState.products = readStorage(storageKeys.products, defaultProducts);
   appState.cart = readStorage(storageKeys.cart, []);
   appState.wishlist = readStorage(storageKeys.wishlist, []);
-
-  const storedSession = readStorage(storageKeys.session, null);
-  if (storedSession) {
-    appState.currentUser = storedSession;
-  }
+  localStorage.removeItem(storageKeys.session);
 }
 
 function handleLogin(event) {
@@ -97,7 +93,6 @@ function handleLogin(event) {
   }
 
   appState.currentUser = { ...matched };
-  writeStorage(storageKeys.session, appState.currentUser);
   errorNode.textContent = '';
   showApp();
 }
@@ -680,6 +675,3 @@ document.querySelectorAll('[data-page]').forEach((button) => {
 });
 
 seedProducts();
-if (appState.currentUser) {
-  showApp();
-}
