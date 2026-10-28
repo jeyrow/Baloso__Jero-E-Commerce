@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jero's Market</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="loginScreen" class="auth-screen">
+      <div class="auth-box">
+        <div class="brand">
+          <h1>Login</h1>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">Email or Username</label>
+            <input id="loginEmail" type="text" placeholder="Enter your email or username" required />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="password-input-wrap">
+              <input id="loginPassword" type="password" placeholder="Enter your password" required />
+              <button id="showPasswordToggle" class="show-password-button" type="button" aria-pressed="false">Show</button>
+            </div>
+          </div>
+
+          <div id="loginError" class="error-message" aria-live="polite"></div>
+          <button type="submit" class="primary-btn">Log In</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="appShell" class="app-shell hidden">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <button id="menuToggle" class="menu-toggle" type="button" aria-label="Close side menu" aria-controls="sideNav" aria-expanded="true">☰</button>
+          <div class="brand-mini">
+            <div class="icon">JM</div>
+            <span>Jero's Market</span>
+          </div>
+
+          <div class="topbar-user">
+            <div class="avatar" id="headerAvatar">U</div>
+            <span id="headerUserName">Welcome</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <nav id="sideNav" class="nav-section" aria-label="Sidebar navigation"></nav>
+        </aside>
+
+        <main class="content">
+          <section id="customer-home-page" class="page-section active">
+            <div class="hero">
+              <div>
+                <div class="badge">Fresh arrivals • This week</div>
+                <h2 id="welcomeMessage">Welcome, Shopper!</h2>
+                <p>Discover affordable essentials, school must-haves, home picks, and trending goods tailored for your everyday life.</p>
+                <div class="cta-row">
+                  <button class="secondary-btn" data-page="products">Shop now</button>
+                  <button class="ghost-btn" data-page="categories">Browse categories</button>
+                </div>
+              </div>
+              <div class="hero-panel">
+                <div class="badge">Today's perk</div>
+                <div><strong>Up to 20% off</strong> on selected gadgets and school supplies.</div>
+                <div><strong>Free shipping</strong> for orders above ₱1,500.</div>
+                <div><strong>New members</strong> receive a special welcome coupon.</div>
+              </div>
+            </div>
+
+            <div class="section-heading">
+              <h2>Featured deals</h2>
+              <div class="meta">Handpicked picks</div>
+            </div>
+            <div id="featuredProducts" class="product-grid"></div>
+
+            <div class="section-heading" style="margin-top: 28px;">
+              <h2>Hot promotions</h2>
+              <div class="meta">Limited time</div>
+            </div>
+            <div class="promo-grid">
+              <div class="promo-card">
+                <h3>Back-to-School</h3>
+                <p>Save more on school backpacks, notebooks, and essential study gear for the new term.</p>
+              </div>
+              <div class="promo-card">
+                <h3>Weekend Sale</h3>
+                <p>Enjoy extra discounts on clothing, accessories, and home essentials across all categories.</p>
+              </div>
+              <div class="promo-card">
+                <h3>Smart Living</h3>
+                <p>Upgrade your workspace with useful gadgets and gadgets for productivity and comfort.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="customer-products-page" class="page-section">
+            <div class="section-heading">
+              <h2>Products</h2>
+              <div class="meta" id="productCountLabel">0 items</div>
+            </div>
+            <div id="productsGrid" class="product-grid"></div>
+          </section>
+
+          <section id="customer-categories-page" class="page-section">
+            <div class="section-heading">
+              <h2>Categories</h2>
+              <div class="meta">Shop by interest</div>
+            </div>
+            <div id="categoriesGrid" class="category-grid"></div>
+          </section>
+
+          <section id="customer-cart-page" class="page-section">
+            <div class="section-heading">
+              <h2>Cart</h2>
+              <div class="meta" id="cartItemCount">0 items</div>
+            </div>
+            <div class="cart-layout">
+              <div class="cart-panel">
+                <div id="cartItems" class="cart-items"></div>
+              </div>
+              <div class="checkout-panel">
+                <h3>Order summary</h3>
+                <div class="totals">
+                  <div class="line"><span>Subtotal</span><strong id="subtotalValue">₱0.00</strong></div>
+                  <div class="line"><span>Shipping</span><strong id="shippingValue">₱0.00</strong></div>
+                  <div class="line"><span>Discount</span><strong id="discountValue">-₱0.00</strong></div>
+                  <div class="line"><span>Total</span><strong id="totalValue">₱0.00</strong></div>
+                </div>
+                <button id="checkoutButton" class="primary-btn">Proceed to Checkout</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="customer-wishlist-page" class="page-section">
+            <div class="section-heading">
+              <h2>Wishlist</h2>
+              <div class="meta" id="wishlistCount">0 saved</div>
+            </div>
+            <div id="wishlistItems" class="product-grid"></div>
+          </section>
+
+          <section id="customer-orders-page" class="page-section">
+            <div class="section-heading">
+              <h2>My Orders</h2>
+              <div class="meta">Recent activity</div>
+            </div>
+            <div id="ordersList" class="orders-grid"></div>
+          </section>
+
+          <section id="customer-profile-page" class="page-section">
+            <div class="section-heading">
+              <h2>Profile</h2>
+              <div class="meta">Account details</div>
+            </div>
+            <div class="profile-grid">
+              <div class="profile-card">
+                <div class="avatar-lg" id="profileAvatar">U</div>
+                <h3 id="profileName">Customer Name</h3>
+                <ul class="detail-list">
+                  <li><span>Email</span><strong id="profileEmail">-</strong></li>
+                  <li><span>Contact</span><strong id="profilePhone">-</strong></li>
+                  <li><span>Address</span><strong id="profileAddress">-</strong></li>
+                </ul>
+              </div>
+              <div class="profile-card">
+                <h3>Customer preferences</h3>
+                <ul class="detail-list">
+                  <li><span>Preferred category</span><strong>Electronics</strong></li>
+                  <li><span>Member since</span><strong>Jan 2025</strong></li>
+                  <li><span>Wishlist items</span><strong id="profileWishlistTotal">0</strong></li>
+                  <li><span>Cart items</span><strong id="profileCartTotal">0</strong></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="seller-dashboard-page" class="page-section">
+            <div class="section-heading">
+              <h2>Seller Dashboard</h2>
+              <div class="meta">Overview</div>
+            </div>
+            <div id="sellerStats" class="stats-grid"></div>
+
+            <div class="section-heading" style="margin-top: 26px;">
+              <h2>Sales summary</h2>
+              <div class="meta">This month</div>
+            </div>
+            <div class="promo-grid">
+              <div class="promo-card">
+                <h3>Gross sales</h3>
+                <p>₱45,500.00 from current month orders and active promotions.</p>
+              </div>
+              <div class="promo-card">
+                <h3>Pending orders</h3>
+                <p>12 orders are currently awaiting packaging and dispatch.</p>
+              </div>
+              <div class="promo-card">
+                <h3>Best seller</h3>
+                <p>Legendary Nokia leads your store with the highest purchases this month.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="seller-products-page" class="page-section">
+            <div class="section-heading">
+              <h2>Manage Products</h2>
+              <div class="meta">Add, edit, or remove items</div>
+            </div>
+            <div class="summary-box" style="padding: 20px; margin-bottom: 18px;">
+              <h3>Add or update product</h3>
+              <form id="productForm" class="product-form">
+                <input id="productId" type="hidden" />
+                <div class="form-group field-full">
+                  <label for="productName">Product name</label>
+                  <input id="productName" type="text" placeholder="Enter product name" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="productPrice">Price</label>
+                  <input id="productPrice" type="number" min="1" placeholder="0" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="productCategory">Category</label>
+                  <select id="productCategory" required>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="School Supplies">School Supplies</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Home">Home</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="productStock">Stock</label>
+                  <input id="productStock" type="number" min="0" placeholder="0" required />
+                </div>
+
+                <div class="form-group field-full">
+                  <label for="productImage">Image URL</label>
+                  <input id="productImage" type="url" placeholder="https://example.com/product.jpg" />
+                </div>
+
+                <div class="action-row field-full">
+                  <button type="submit" class="primary-btn">Save product</button>
+                  <button type="button" id="cancelProductEdit" class="ghost-btn">Clear</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="sellerProductTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="seller-orders-page" class="page-section">
+            <div class="section-heading">
+              <h2>Orders</h2>
+              <div class="meta">Customer purchases</div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Order #</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="sellerOrderTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="seller-profile-page" class="page-section">
+            <div class="section-heading">
+              <h2>Seller Profile</h2>
+              <div class="meta">Store information</div>
+            </div>
+            <div class="profile-grid">
+              <div class="profile-card">
+                <div class="avatar-lg">S</div>
+                <h3 id="sellerName">Seller Name</h3>
+                <ul class="detail-list">
+                  <li><span>Store</span><strong>TAU Market Store</strong></li>
+                  <li><span>Email</span><strong>seller@example.com</strong></li>
+                  <li><span>Contact</span><strong>+63 912 345 6789</strong></li>
+                  <li><span>Location</span><strong>Camiling, Tarlac</strong></li>
+                </ul>
+              </div>
+              <div class="profile-card">
+                <h3>Store notes</h3>
+                <ul class="detail-list">
+                  <li><span>Inventory items</span><strong id="sellerProductCount">0</strong></li>
+                  <li><span>Net rating</span><strong>4.9/5</strong></li>
+                  <li><span>Response time</span><strong>Within 2 hours</strong></li>
+                  <li><span>Shipping</span><strong>Nationwide</strong></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
